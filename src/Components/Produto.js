@@ -15,6 +15,7 @@ export class Produto extends React.Component{
                     <img src=""/>
                     <p>item.nomeDoItem</p>
                     <p>item.valorDoItem</p>
+                    <button>ADICIONAR AO CARRINHO</button>
                 </div>
             )
         })
