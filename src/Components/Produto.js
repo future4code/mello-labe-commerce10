@@ -3,8 +3,8 @@ import React from 'react';
 export class Produto extends React.Component{
     state={
         produto={
-            nomeDoItem='',
-            valorDoItem='',            
+            nomeDoItem:'Arroz',
+            valorDoItem:'25',            
             }
         }
     }
@@ -19,9 +19,8 @@ export class Produto extends React.Component{
                 </div>
             )
         })
-        return 
-        (
+        return         
             <div>{listaDeProdutos}</div>
             
-        );
+        
     }
