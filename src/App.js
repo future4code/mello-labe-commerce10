@@ -1,5 +1,6 @@
 import React from 'react';
 import Produto from './Components/Produto'
+import Filtros from './Components/Filtros'
 import './App.css';
 
 function App() {
