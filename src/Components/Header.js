@@ -18,7 +18,7 @@ class Header extends React.Component{
     render (){
         return ( 
         <ContainerHeader>
-            <label>Quantidade de Produtos: {this.props.qnt}</label>
+            <label>Quantidade de Produtos={this.props.qnt}</label>
             <select>
                 <option value= "crescente">Preço crescente</option>
                 <option value= "decrescente">Preço decrescente</option>
