@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Produto from './Produto';
+import Filtros from './Filtros';
 
 
 const ContainerHeader = styled.div`
@@ -18,7 +18,7 @@ class Header extends React.Component{
     render (){
         return ( 
         <ContainerHeader>
-            <label>Quantidade de Produtos: {this.props.qnt}</label>
+            <label>Quantidade de Produtos={this.props.qnt}</label>
             <select>
                 <option value= "crescente">Preço crescente</option>
                 <option value= "decrescente">Preço decrescente</option>
