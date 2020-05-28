@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Produto from './Produto';
+import Filtros from './Filtros';
 
 
 const ContainerHeader = styled.div`
