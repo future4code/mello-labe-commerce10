@@ -1,27 +1,32 @@
 import React from 'react';
-import Produto from './Components/Produto';
-import Filtros from './Components/Filtros';
-import Header from './Components/Header';
-import Carrinho from './Components/Carrinho';
-import styled from 'styled-components';
+import logo from './logo.svg';
+import './App.css';
+import Filtros from './Components/Filtros'
+import Header from './Components/Header'
+import Produto from './Components/Produto'
+import Carrinho from './Components/Carrinho'
 
-const DivProdutos = styled.div`
-display: flex;
-flex-direction: row;
-`
 
-function App() {
-	return (
-		<div className="App">	
-			<Header/>
-			<DivProdutos>				
-				<Filtros/>
-				<Produto/>
-			</DivProdutos>	
-			<Carrinho/>
-					
-		</div>
-	);
-}
+
+class App extends React.Component { 
+  state = { 
+    quantidadeProdutos : ''
+   }
+
+  mostraQuantidade = (x) => {
+    this.setState({quantidadeProdutos : x});
+  }
+
+  render() { 
+    return ( 
+      <div className="App">
+      <Filtros />
+      <Header qnt={this.state.quantidadeProdutos} />
+      <Produto  quantidade={this.mostraQuantidade.bind(this)}/>
+      <Carrinho />
+      </div>
+    );
+  }
+} 
 
 export default App;
