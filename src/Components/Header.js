@@ -1,29 +1,68 @@
 import React from 'react';
 import styled from 'styled-components';
-import Filtros from './Filtros';
+import shoppingCart from './assets/imgs/shopping-cart.png'
+import logo from './assets/imgs/logo.jpeg'
 
-
-const ContainerHeader = styled.div`
+// Estilização dos components
+const ContainerHeader = styled.header`
 display: flex;
-justify-content: space-between;
-border: 1px solid black;
-width: 98vw;
-padding: 2px;
+justify-content: space-around;
+height: 16vh;
+background-color: #08088A;
 `
 
-class Header extends React.Component{
-    state={
-        contador: 3 
+const ArticleCarinho = styled.article`
+width: 20%;
+height: 10vh;
+background-color: #0000FF;
+box-shadow: 2px 2px 10px #FF4000;
+border-radius: 0px 0px 5px 5px;
+a{
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    img{
+        height: 40px;
+        width: 40px;
     }
-    render (){
-        return ( 
-        <ContainerHeader>
-            <label>Quantidade de Produtos={this.props.qnt}</label>
-            <select>
-                <option value= "crescente">Preço crescente</option>
-                <option value= "decrescente">Preço decrescente</option>
-            </select>
-        </ContainerHeader>
+    p{
+        margin-top: 3px;
+        text-transform: uppercase;
+        font-style: italic;
+    }
+}
+`
+
+const ArticleLogo = styled.article`
+width: 30%;
+height: 10vh;
+border-radius: 5px;
+img{
+    width: 110px;
+    height: 16vh;
+}
+`
+
+class Header extends React.Component {
+    state = {
+        contador: 3
+    }
+    render() {
+        return (
+            <ContainerHeader>
+                <ArticleLogo>
+                    <img src={logo} alt='logo' />
+                </ArticleLogo>
+                <ArticleCarinho>
+                    <a>
+                        <img src={shoppingCart} alt='cart' />
+                        <p>Meu Carrinho</p>
+                    </a>
+
+                </ArticleCarinho>
+
+            </ContainerHeader>
         );
     }
 }
