@@ -10,8 +10,6 @@ class Carrinho extends Component {
     componentDidUpdate = ()=>{
        
         //this.setState({nome: this.props.nomeDoProduto})
-
-        console.log(this.props.nomeDoProduto)  
     } 
     render() {        
         //const listaDeProdutos= this.state.produtos.map(produto =>{
@@ -24,8 +22,8 @@ class Carrinho extends Component {
        return ( 
             <div>
                 <p>Carrinho</p>
-                <p>{this.props.nomeDoProduto}</p>
-                <p>Total: R$ {this.props.valorDoProduto}</p>
+                <p>{this.props.produtosNoCarrinho}</p>
+                <p>Total: R$ {this.props.valorTotalDosProdutos}</p>
             </div>
         );
     }

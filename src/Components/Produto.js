@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "./Header";
 import Carrinho from "./Carrinho";
+import ReactDOM from 'react-dom'
 
 const GridProduto = styled.div`
   display: flex;
@@ -9,40 +9,92 @@ const GridProduto = styled.div`
   width: 15vw;
   padding: 2px;
 `;
+const ItemDoCarrinho = styled.div`
+display: flex;
+flex-direction: row;
+margin: 2px;
+padding:2px;
+`
+
+
 class Produto extends React.Component {
-  
-   componentDidUpdate(prevProps, prevState) {
-   this.quantidade.bind(this);
-  }
+       
    state = {
     itens: [
-      {
+      { 
         nomeDoItem: "Arroz",
-        valorDoItem: "25"
+        valorDoItem: 25
       },
       {
         nomeDoItem: "Feijão",
-        valorDoItem: "15"
+        valorDoItem: 15
       },
       {
         nomeDoItem: "Batata",
-        valorDoItem: "12"
+        valorDoItem: 12
       }
     ],
-    nomeNoCarrinho: [],
-    valorNoCarrinho:'',
+    informacoesDoProduto: [
+      {
+        nome:'',
+        valor:''
+      }
+    ],
+    arrayDeValores: [
+    ],
+    valorTotalDoCarrinho:'',
+    valorParaRemover: '',
+
   };
 
-  
+  componentDidUpdate(prevProps, prevState) {
+    this.quantidade.bind(this);
+   }  
   quantidade = e => {
     e.preventDefault();
     this.props.quantidade(this.state.itens.length);
   };
 
   onClickAdicionaAoCarrinho = (nome, valor) =>{
-    this.setState({nomeNoCarrinho: nome,
-      valorNoCarrinho: valor
-    })     
+    
+    const produtosNoCarrinho= [...this.state.informacoesDoProduto]
+    produtosNoCarrinho.push({nome: nome, valor: valor});
+    this.setState({informacoesDoProduto: produtosNoCarrinho})
+    console.log(this.state.informacoesDoProduto)
+    
+    const valoresDoCarrinho=[...this.state.arrayDeValores]//abrindo o array
+    valoresDoCarrinho.push(valor);//adicionando valores
+    this.setState({arrayDeValores: valoresDoCarrinho})
+        
+    let valores= 0
+    for(let valor of valoresDoCarrinho){
+        valores=valor + valores        
+    }      
+    this.setState({valorTotalDoCarrinho: valores})
+    
+  }
+
+  OnClickRemoveDoCarrinho=(event,valor)=>{  
+    //apaga o elemento pai   
+    ReactDOM.findDOMNode(event.target).parentNode.style.display = 'none'
+
+
+    this.setState({valorParaRemover: valor})
+    const totalDoCarrinho=this.state.valorTotalDoCarrinho
+    const valorRemovido = totalDoCarrinho - valor
+    this.setState({valorTotalDoCarrinho: valorRemovido})
+    
+    //retirando o valor removido do array de valores (ainda não funciona)
+    let arrayAtualizado = this.state.arrayDeValores
+    for (let preco of arrayAtualizado) {
+        if (preco === valor){
+            arrayAtualizado.splice(preco,1)
+        }
+    } 
+   
+
+    this.setState({arrayDeValores:arrayAtualizado})
+    console.log(this.state.arrayDeValores)
   }
 
   render() {
@@ -55,7 +107,20 @@ class Produto extends React.Component {
         </GridProduto>
       );
     });
-    
+
+    const listaDoCarrinho=this.state.informacoesDoProduto.map(produto=>{
+        return (
+            <ItemDoCarrinho>
+                <p>{produto.nome}</p> 
+                <p>{produto.valor}</p>
+                <button onClick={(event) => {
+                    {this.OnClickRemoveDoCarrinho(event, produto.valor)}
+                                  
+                }}>X</button>
+            </ItemDoCarrinho>
+        );
+    });
+
     return (
       <div>
         <button onClick={()=>{this.quantidade.bind(this)}}>
@@ -63,8 +128,8 @@ class Produto extends React.Component {
         </button>
         listaDeItens={listaDeProdutos}
         <Carrinho
-        nomeDoProduto={this.state.nomeNoCarrinho}
-        valorDoProduto={this.state.valorNoCarrinho}
+        produtosNoCarrinho={listaDoCarrinho}
+        valorTotalDosProdutos={this.state.valorTotalDoCarrinho}
         />
       </div>
     );
