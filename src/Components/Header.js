@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import shoppingCart from './assets/imgs/shopping-cart.png'
-import logo from './assets/imgs/logo.jpeg'
+import logo from './assets/imgs/logo.png'
 
 // Estilização dos components
 const ContainerHeader = styled.header`
@@ -39,7 +39,7 @@ width: 30%;
 height: 10vh;
 border-radius: 5px;
 img{
-    width: 110px;
+    width: 130px;
     height: 16vh;
 }
 `
