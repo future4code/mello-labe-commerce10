@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import shoppingCart from './assets/imgs/shopping-cart.png'
+import logo from './assets/imgs/logo.jpeg'
 
 // Estilização dos components
 const ContainerHeader = styled.header`
@@ -36,8 +37,11 @@ a{
 const ArticleLogo = styled.article`
 width: 30%;
 height: 10vh;
-background-color: red;
 border-radius: 5px;
+img{
+    width: 110px;
+    height: 16vh;
+}
 `
 
 class Header extends React.Component {
@@ -48,7 +52,7 @@ class Header extends React.Component {
         return (
             <ContainerHeader>
                 <ArticleLogo>
-                    <p> LOGO</p>
+                    <img src={logo} alt='logo' />
                 </ArticleLogo>
                 <ArticleCarinho>
                     <a>
