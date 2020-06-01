@@ -1,67 +1,45 @@
 import React from 'react';
 import styled from 'styled-components';
-import shoppingCart from './assets/imgs/shopping-cart.png'
-import logo from './assets/imgs/logo.png'
+import logo from './assets/imgs/logo.png';
+import Carrinho from './Carrinho';
 
 // Estilização dos components
 const ContainerHeader = styled.header`
 display: flex;
-justify-content: space-around;
-height: 16vh;
+justify-content: space-between;
+height: 9vh;
 background-color: #08088A;
 `
-
-const ArticleCarinho = styled.article`
-width: 20%;
-height: 10vh;
-background-color: #0000FF;
-box-shadow: 2px 2px 10px #FF4000;
-border-radius: 0px 0px 5px 5px;
-a{
-    display: flex;
-    justify-content: center;
-    font-size: 18px;
-    cursor: pointer;
-    img{
-        height: 40px;
-        width: 40px;
-    }
-    p{
-        margin-top: 3px;
-        text-transform: uppercase;
-        font-style: italic;
-    }
-}
-`
-
 const ArticleLogo = styled.article`
 width: 30%;
 height: 10vh;
 border-radius: 5px;
 img{
-    width: 130px;
-    height: 16vh;
+    margin: 2px 30px;
+    width: 160px;
+    height: 22vh;
 }
 `
-
 class Header extends React.Component {
     state = {
-        contador: 3
+        contador: 3,
+        componente: false
+    }
+
+    onclickCarrinho = (event) => {
+        this.setState({componente: !this.state.componente})
+        console.log(this.state.componente)
     }
     render() {
+        if (this.state.componente){
+            <Carrinho />
+        }
+        
         return (
             <ContainerHeader>
                 <ArticleLogo>
                     <img src={logo} alt='logo' />
-                </ArticleLogo>
-                <ArticleCarinho>
-                    <a>
-                        <img src={shoppingCart} alt='cart' />
-                        <p>Meu Carrinho</p>
-                    </a>
-
-                </ArticleCarinho>
-
+                </ArticleLogo>             
             </ContainerHeader>
         );
     }
