@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from 'styled-components';
 import search from './assets/imgs/search.png';
+import Header from "./Header";
 
 const Section = styled.section`
 display: flex;
@@ -8,7 +9,7 @@ flex-direction: column;
 justify-content: space-evenly;
 align-items: center;
 height: 14vh;
-background-color: #D8D8D8;
+background-color: #08088A;;
 
 div{
     display: flex;
@@ -39,7 +40,9 @@ border: none;
 `
 
 const InputValores = styled.input`
+margin-top: 6px;
 width: 15%;
+height: 50%;
 `
 
 const LabelValormaximo = styled.label`
@@ -67,15 +70,14 @@ class Filtros extends Component {
     quantidadeProdutos: ''
   }
 
-  render() {
+render() {
     return (
       <Section>
         <div>
-          <Input type='search' placeholder='Encrontre seu produto'></Input>
+          <Input type='search' placeholder='Encontre seu produto'></Input>
           <a>
             <img src={search} alt='pesquisa' />
           </a>
-
         </div>
         <div>
           <LabelValormaximo>Valor máximo</LabelValormaximo>
